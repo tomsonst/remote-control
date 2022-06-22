@@ -1,7 +1,7 @@
 import Jimp from 'jimp';
 import {httpServer} from './src/http_server/index.js';
-import robot from 'robotjs';
 import { WebSocketServer } from 'ws';
+import { handleClientRequest } from './src/clientRequest.js';
 
 const HTTP_PORT = 3000;
 
@@ -12,10 +12,9 @@ const wss = new WebSocketServer({port: 8080});
 
 wss.on('connection', function connection(ws) {
   ws.on('message', function message(data) {
-    console.log('received: %s', data);
+    console.log('received ' + data)
+    handleClientRequest(ws, data);
   });
-
-  ws.send('something');
 });
 
 wss.on('close', () => console.log('close ws connection'))
