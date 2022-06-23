@@ -7,6 +7,7 @@ import {
   moveMouseRight
 } from './http_server/simpleMouseOperation.js';
 import { drawSquare, drawRectangle, drawCircle } from './http_server/drawingMouse.js';
+import { getScreenShot } from './http_server/buildingScreenShot.js';
 
 export const handleClientRequest = (ws, req) => {
   const arrReq = req.toString().split(' ');
@@ -37,7 +38,7 @@ export const handleClientRequest = (ws, req) => {
       drawSquare(ws, arrReq);
       break;
     case 'prnt_scrn':
-      moveMouseRight(ws, arrReq);
+      getScreenShot(ws, arrReq);
       break;
   }
 }
