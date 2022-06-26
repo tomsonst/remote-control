@@ -69,5 +69,5 @@ export const drawCircle = (ws: WebSocket, arrReq: string[]) => {
   }
 
   robot.mouseToggle('up');
-  ws.send(`draw_rectangle ${radius}`);
+  ws.send(`draw_circle ${radius}`);
 }
