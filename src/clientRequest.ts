@@ -1,17 +1,17 @@
-import robot from 'robotjs';
 import {
   getMousePosition,
   moveMouseUp,
   moveMouseDown,
   moveMouseLeft,
   moveMouseRight
-} from './http_server/simpleMouseOperation.js';
-import { drawSquare, drawRectangle, drawCircle } from './http_server/drawingMouse.js';
-import { getScreenShot } from './http_server/buildingScreenShot.js';
+} from './http_server/simpleMouseOperation';
+import { drawSquare, drawRectangle, drawCircle } from './http_server/drawingMouse';
+import { getScreenShot } from './http_server/buildingScreenShot';
+import { WebSocket } from 'ws';
 
-export const handleClientRequest = (ws, req) => {
-  const arrReq = req.toString().split(' ');
-  const command = arrReq[0];
+export const handleClientRequest = (ws: WebSocket, req: string) => {
+  const arrReq : string[] = req.toString().split(' ');
+  const command : string = arrReq[0];
   switch(command){
     case 'mouse_position':
       getMousePosition(ws);
@@ -38,7 +38,7 @@ export const handleClientRequest = (ws, req) => {
       drawSquare(ws, arrReq);
       break;
     case 'prnt_scrn':
-      getScreenShot(ws, arrReq);
+      getScreenShot(ws);
       break;
   }
 }

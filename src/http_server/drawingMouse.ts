@@ -1,7 +1,8 @@
 import robot from 'robotjs';
+import { WebSocket } from 'ws';
 
-export const drawSquare = (ws, arrReq) => {
-  const width = Number(arrReq[1]);
+export const drawSquare = (ws: WebSocket, arrReq: string[]) => {
+  const width: number = Number(arrReq[1]);
   let {x, y} = robot.getMousePos();
   robot.setMouseDelay(2);
   robot.mouseToggle('down');
@@ -21,15 +22,15 @@ export const drawSquare = (ws, arrReq) => {
   ws.send(`draw_square ${width}`);
 }
 
-export const drawRectangle = (ws, arrReq) => {
-  const width = Number(arrReq[1]);
-  const length = Number(arrReq[2]);
+export const drawRectangle = (ws: WebSocket, arrReq: string[]) => {
+  const width: number = Number(arrReq[1]);
+  const length: number = Number(arrReq[2]);
   let {x, y} = robot.getMousePos();
   robot.setMouseDelay(2);
   robot.mouseToggle('down');
 
   for(let j = 0; j < 4; j++){
-    const coordinate = j % 2 === 0 ? width : length;
+    const coordinate: number = j % 2 === 0 ? width : length;
 
     for(let i = 0; i < coordinate; i++){
       if(j === 0) x += 1;
@@ -44,14 +45,14 @@ export const drawRectangle = (ws, arrReq) => {
   ws.send(`draw_rectangle ${width}`);
 }
 
-export const drawCircle = (ws, arrReq) => {
-  const radius = Number(arrReq[1]);
+export const drawCircle = (ws: WebSocket, arrReq: string[]) => {
+  const radius: number = Number(arrReq[1]);
 
   let {x, y} = robot.getMousePos();
   robot.setMouseDelay(2);
   robot.mouseToggle('down');
-  const centerX = x + radius;
-  const centerY = y;
+  const centerX: number = x + radius;
+  const centerY: number = y;
 
   for(let j = 0; j < 4; j++){
 
